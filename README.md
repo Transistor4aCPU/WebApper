@@ -5,9 +5,9 @@ You can start WebApper with the startmenu entry WebApper.
 ######
 Functions:
 ######
-* Create Web app
+* Create webapp
 ######
-* Create Web app start menu icon
+* Create webapp start menu icon
 #
 ## Installation
 ```
