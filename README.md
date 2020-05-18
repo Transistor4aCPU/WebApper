@@ -7,7 +7,7 @@ Functions:
 ######
 * Create webapp
 ######
-* Create webapp start menu icon
+* Create webapp start menu entry
 #
 ## Installation
 ```
