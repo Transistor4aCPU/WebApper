@@ -1,7 +1,7 @@
 # WebApper
 An Debian/Ubuntu/Mint Linux GUI for nativefier, an Electron based WebApp tool.
 ######
-You can start WebApper with the Startmenu Entry WebApper.
+You can start WebApper with the startmenu entry WebApper.
 ######
 Functions:
 ######
