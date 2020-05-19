@@ -3,11 +3,15 @@ An Debian/Ubuntu/Mint Linux GUI for nativefier, an Electron based WebApp tool.
 ######
 You can start WebApper with the startmenu entry WebApper.
 ######
-Functions:
+Features:
 ######
 * Create webapp
 ######
 * Create webapp start menu entry
+######
+* Use custom webapp icon
+######
+* Set custom webapp name
 #
 ## Installation
 ```
