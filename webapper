@@ -3,29 +3,20 @@ website=$(zenity --title="WebApper" --text="Insert the URL of the website for th
 cd $HOME
 userhome=$HOME
 mkdir ${userhome}/WebApps
-mkdir ${userhome}/WebApps/${website}/
-cd ${userhome}/WebApps/${website}/
-zenity --question --title="WebApp name" --text="Do you want to set a custom name for your WebApp"
-setwebappname=$?
-if [ "$setwebappname" == 0 ]
-	then
-		webappname=$(zenity --title="Set WebApp name" --text="Enter a name for your WebApp" --entry)
-		nativefier -n $webappname -p linux -a x64 $website --tray
-	else
-		nativefier -p linux -a x64 $website --tray
-		webappname=$(ls|sed s/-linux-x64//g)
-fi
-webappdir=$(ls)
+cd ${userhome}/WebApps/
+webappname=$(zenity --title="Set WebApp name" --text="Enter a name for your WebApp" --entry | grep -o '[[:alnum:]]' | tr "\n" " " | sed 's/ //g')
+nativefier -n $webappname -p linux -a x64 $website --tray
+webappdir=${webappname}-linux-x64
 zenity --question --title="WebApp icon" --text="Do you want to set a custom icon for your WebApp"
 setwebappicon=$?
 if [ "$setwebappicon" == 0 ]
         then
-		mv ${userhome}/WebApps/${website}/${webappdir}/resources/app/icon.png ${userhome}/WebApps/${website}/${webappdir}/resources/app/icon.old.png
+		mv ${userhome}/WebApps/${webappdir}/resources/app/icon.png ${userhome}/WebApps/${webappdir}/resources/app/icon.old.png
 		iconpath=$(zenity --title="Custom icon" text="Select custom png icon" --file-selection)
-		ln -s $iconpath ${userhome}/WebApps/${website}/${webappdir}/resources/app/icon.png
+		ln -s $iconpath ${userhome}/WebApps/${webappdir}/resources/app/icon.png
 fi
 cd *
-pkexec sudo chmod +x ${userhome}/WebApps/${website}/${webappdir}/*
-echo -e "[Desktop Entry]\nTerminal=false\nType=Application\nCategories=Application;System;Settings;Utility;\nExec=$userhome/WebApps/$website/$webappdir/$webappname\nName=$webappname\nComment=An electron based WebApp for $webappname\nIcon=$userhome/WebApps/$website/$webappdir/resources/app/icon.png" > $userhome/.local/share/applications/$webappname.desktop
+pkexec sudo chmod +x ${userhome}/WebApps/${webappdir}/*
+echo -e "[Desktop Entry]\nTerminal=false\nType=Application\nCategories=Application;System;Settings;Utility;\nExec=$userhome/WebApps/$webappdir/$webappname\nName=$webappname\nComment=An electron based WebApp for $webappname\nIcon=$userhome/WebApps/$webappdir/resources/app/icon.png" > $userhome/.local/share/applications/$webappname.desktop
 zenity --info --title="WebApper" --text="WebApp ${webappname} successfully created"
 exit
